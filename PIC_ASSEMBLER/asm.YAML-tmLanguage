@@ -1,0 +1,99 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+name: PIC ASM
+scopeName: source.asm
+fileTypes: [asm, inc, s]
+uuid: 44960223-36a6-4f65-8d03-046c07dc55da
+
+patterns:
+
+- comment: Special function registers
+  name: storage.type.asm
+  match: (?i)\b(ANSEL[A-C]|PMD[0-2]|DACCON[0-1]|VREFCON[0-2]|FVRCON|CTMUICON|CTMUICONH|CTMUCON[0-1]|CTMUCON[L,H]|SRCON[0-1]|CCPTMRS[0-1]|TMR[0-6]|CCP[1-5]CON|CCP[1-3]AS|SLRCON|WPUB|IOCB|SSP[1-2]CON[1-3]|CM12CON|CM2CON[0-1]|CM[1-2]CON|CM1CON0|PORT[A,B,C,E]|LAT[A-C]|TRIS[A,B,C,E]|DDR[A-C]|OSCTUNE|HLVDCON|LVDCON|PIE[1-5]|PIR[1-5]|IPR[1-5]|EECON[1-2]|EEDATA|EEADR|EEADRH|RC[1-2]STA|RCSTA|RCSTA[1-2]|TX[1-2]STA|TXSTA|TXSTA[1-2]|TX[1-2]REG|TXREG|TXREG[1-2]|RC[1-2]REG|RCREG|RCREG[1-2]|SP[1-2]BRG|SPBRG|SPBRG[1-2]|SP[1-2]BRGH|SPBRGH|SPBRGH[1-2]|ECCP[1-3]AS|ECCPAS|PWM[1-3]CON|PWMCON|BAUD[1-2]CON|BAUDCON|BAUDCON[1-2]|BAUDCTL|PSTR[1-3]CON|PSTRCON|PR[2,4,6]|CCPR[1-5]|CCPR[1-5]L|CCPR[1-5]H|ADCON[0-2]|ADRES|ADRES[L,H]|SSPCON[1-3]|SSP[1-2]STAT|SSPSTAT|SSP[1-2]ADD|SSPADD|SSP[1-2]BUF|SSPBUF|SSP[1-2]MSK|SSPMSK|T[1,3,5]GCON|RCON|WDTCON|OSCCON2|OSCCON|T[0-6]CON|TMR[0,1,3,5]L|TMR[0,1,3,5]H|STATUS|BSR|WREG|FSR[0-2]L|FSR[0-2]H|PLUSW[0-2]|PREINC[0-2]|POSTDEC[0-2]|POSTINC[0-2]|INDF[0-2]|INTCON[2-3]|INTCON|PROD|PROD[L,H]|TABLAT|TBLPTR|TBLPTR[L,H,U]|PC|PCL|PCLAT[H,U]|STKPTR|TOS|TOS[L,H,U])\b
+
+- comment: Byte-oriented commands
+  name: keyword.operator.asm
+  match: (?i)\b(ADDWF|ADDWFC|ANDWF|CLRF|COMF|CPFSEQ|CPFSGT|CPFSLT|DECF|DECFSZ|DECFSNZ|INCF|INCFSZ|INCFSNZ|IORWF|MOVF|MOVFF|MOVWF|MULWF|NEGF|RLCF|RLNCF|RRCF|RRNCF|SETF|SUBWF|SUBWFB|SWAPF|TSTFSZ|XORWF|HIGH|LOW)\b
+
+- comment: Bit-oriented instructions
+  name: keyword.operator.asm
+  match: (?i)\b(BCF|BSF|BTFSC|BTFSS|BTG|)\b
+
+- comment: Control operations
+  name: keyword.control.asm
+  match: (?i)\b(BC|BN|BNC|BNN|BNOV|BNZ|BOV|BRA|BZ|CALL|CLRWDT|DAW|GOTO|NOP|POP|PUSH|RCALL|RESET|RETFIE|RETLW|RETURN|SLEEP)\b
+
+- comment: Literal operations
+  name: keyword.operator.asm
+  match: (?i)\b(ADDLW|ANDLW|IORLW|LFSR|MOVLB|MOVLW|MULLW|RETLW|SUBLW|XORLW)\b
+
+- comment: DATA MEMORY <---> PROGRAM MEMORY OPERATIONS
+  name: keyword.coperator.asm
+  match: (?i)\b(TBLRD\*\s|TBLRD\*\+|TBLRD\*\-|TBLRD\+\*|TBLWT\*\s|TBLWT\*\+|TBLWT\*\#|TBLWT\+\*)\B
+
+- comment: ASM directives 1
+  name: constant.character.asm
+  match: (?i)\b(__BADRAM|BANKISEL|BANKSEL|CBLOCK|CODE|__CONFIG|CONFIG|CONSTANT|DA|DATA|DB|DE|DT|DW|ELSE|END|ENDC|ENDIF|ENDM|ENDW|EQU|ERROR|ERRORLEVEL|EXITM|EXPAND|EXTERN|FILL|GLOBAL|IDATA|__IDLOCS|IF|IFDEF|IFNDEF|LIST|LOCAL|MACRO|__MAXRAM|MESSG|NOEXPAND|NOLIST|ORG|PAGE|PAGESEL|PROCESSOR|RADIX|RES|SET|SPACE|SUBTITLE|TITLE|UDATA|UDATA_ACS|UDATA_OVR|UDATA_SHR|VARIABLE|WHILE)\b
+
+- comment: ASM directives 2
+  name: constant.character.asm
+  match: (?i)\B(#DEFINE|#INCLUDE|#UNDEFINE)\b
+
+- comment: Label
+  name: variable.parameter.asm
+  match: (^ ?(?i)[0-9A-Z\:\_]+)(\b|\B)
+
+- comment: Comment line
+  name: comment.line.asm
+  match: (//|;)(\s|\S)*
+
+- comment: C-style comment block
+  name: comment.block.asm
+  begin: (/\*)
+  end: (\*/)
+
+- comment: Single-line string
+  name: string.asm
+  match: (^|\s)"[\w\s\W]*"($|\s)
+
+- comment: Single-line string
+  name: string.asm
+  match: (^|\s)\'[\w\s\W]*\'($|\s)
+
+- comment: HEX number constant 1
+  name: constant.numeric.hex
+  match: (?i)\b(0x(\d|[A-F])+)\b
+
+- comment: HEX number constant 2
+  name: constant.numeric.hex
+  match: (?i)\b((\d|[A-F])+h)\b
+
+- comment: HEX number constant 3
+  name: constant.numeric.hex
+  match: (?i)\b(H'(\d|[A-F])+')\B
+
+- comment: OCT number constant 1
+  name: constant.numeric.octal
+  match: \b(0[0-7]+)\b
+
+- comment: OCT number constant 2
+  name: constant.numeric.octal
+  match: (?i)\b(O'[0-7]+')\B
+
+- comment: DEC number constant 1
+  name: constant.numeric.asm
+  match: \B(\.\d+)\b
+
+- comment: DEC number constant 2
+  name: constant.numeric.asm
+  match: (?i)\b(D'\d+')\B
+
+- comment: BIN number constant 1
+  name: constant.numeric.asm
+  match: (?i)\b(0b(0|1)+)\b
+
+- comment: BIN number constant 2
+  name: constant.numeric.asm
+  match: (?i)\b(B'[0-1]+')\B
+
+
+

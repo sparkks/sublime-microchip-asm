@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>asm</string>
+		<string>inc</string>
+		<string>s</string>
+	</array>
+	<key>name</key>
+	<string>PIC ASM</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>comment</key>
+			<string>Special function registers</string>
+			<key>match</key>
+			<string>(?i)\b(ANSEL[A-C]|PMD[0-2]|DACCON[0-1]|VREFCON[0-2]|FVRCON|CTMUICON|CTMUICONH|CTMUCON[0-1]|CTMUCON[L,H]|SRCON[0-1]|CCPTMRS[0-1]|TMR[0-6]|CCP[1-5]CON|CCP[1-3]AS|SLRCON|WPUB|IOCB|SSP[1-2]CON[1-3]|CM12CON|CM2CON[0-1]|CM[1-2]CON|CM1CON0|PORT[A,B,C,E]|LAT[A-C]|TRIS[A,B,C,E]|DDR[A-C]|OSCTUNE|HLVDCON|LVDCON|PIE[1-5]|PIR[1-5]|IPR[1-5]|EECON[1-2]|EEDATA|EEADR|EEADRH|RC[1-2]STA|RCSTA|RCSTA[1-2]|TX[1-2]STA|TXSTA|TXSTA[1-2]|TX[1-2]REG|TXREG|TXREG[1-2]|RC[1-2]REG|RCREG|RCREG[1-2]|SP[1-2]BRG|SPBRG|SPBRG[1-2]|SP[1-2]BRGH|SPBRGH|SPBRGH[1-2]|ECCP[1-3]AS|ECCPAS|PWM[1-3]CON|PWMCON|BAUD[1-2]CON|BAUDCON|BAUDCON[1-2]|BAUDCTL|PSTR[1-3]CON|PSTRCON|PR[2,4,6]|CCPR[1-5]|CCPR[1-5]L|CCPR[1-5]H|ADCON[0-2]|ADRES|ADRES[L,H]|SSPCON[1-3]|SSP[1-2]STAT|SSPSTAT|SSP[1-2]ADD|SSPADD|SSP[1-2]BUF|SSPBUF|SSP[1-2]MSK|SSPMSK|T[1,3,5]GCON|RCON|WDTCON|OSCCON2|OSCCON|T[0-6]CON|TMR[0,1,3,5]L|TMR[0,1,3,5]H|STATUS|BSR|WREG|FSR[0-2]L|FSR[0-2]H|PLUSW[0-2]|PREINC[0-2]|POSTDEC[0-2]|POSTINC[0-2]|INDF[0-2]|INTCON[2-3]|INTCON|PROD|PROD[L,H]|TABLAT|TBLPTR|TBLPTR[L,H,U]|PC|PCL|PCLAT[H,U]|STKPTR|TOS|TOS[L,H,U])\b</string>
+			<key>name</key>
+			<string>storage.type.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Byte-oriented commands</string>
+			<key>match</key>
+			<string>(?i)\b(ADDWF|ADDWFC|ANDWF|CLRF|COMF|CPFSEQ|CPFSGT|CPFSLT|DECF|DECFSZ|DECFSNZ|INCF|INCFSZ|INCFSNZ|IORWF|MOVF|MOVFF|MOVWF|MULWF|NEGF|RLCF|RLNCF|RRCF|RRNCF|SETF|SUBWF|SUBWFB|SWAPF|TSTFSZ|XORWF|HIGH|LOW)\b</string>
+			<key>name</key>
+			<string>keyword.operator.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Bit-oriented instructions</string>
+			<key>match</key>
+			<string>(?i)\b(BCF|BSF|BTFSC|BTFSS|BTG|)\b</string>
+			<key>name</key>
+			<string>keyword.operator.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Control operations</string>
+			<key>match</key>
+			<string>(?i)\b(BC|BN|BNC|BNN|BNOV|BNZ|BOV|BRA|BZ|CALL|CLRWDT|DAW|GOTO|NOP|POP|PUSH|RCALL|RESET|RETFIE|RETLW|RETURN|SLEEP)\b</string>
+			<key>name</key>
+			<string>keyword.control.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Literal operations</string>
+			<key>match</key>
+			<string>(?i)\b(ADDLW|ANDLW|IORLW|LFSR|MOVLB|MOVLW|MULLW|RETLW|SUBLW|XORLW)\b</string>
+			<key>name</key>
+			<string>keyword.operator.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>DATA MEMORY &lt;---&gt; PROGRAM MEMORY OPERATIONS</string>
+			<key>match</key>
+			<string>(?i)\b(TBLRD\*\s|TBLRD\*\+|TBLRD\*\-|TBLRD\+\*|TBLWT\*\s|TBLWT\*\+|TBLWT\*\#|TBLWT\+\*)\B</string>
+			<key>name</key>
+			<string>keyword.coperator.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>ASM directives 1</string>
+			<key>match</key>
+			<string>(?i)\b(__BADRAM|BANKISEL|BANKSEL|CBLOCK|CODE|__CONFIG|CONFIG|CONSTANT|DA|DATA|DB|DE|DT|DW|ELSE|END|ENDC|ENDIF|ENDM|ENDW|EQU|ERROR|ERRORLEVEL|EXITM|EXPAND|EXTERN|FILL|GLOBAL|IDATA|__IDLOCS|IF|IFDEF|IFNDEF|LIST|LOCAL|MACRO|__MAXRAM|MESSG|NOEXPAND|NOLIST|ORG|PAGE|PAGESEL|PROCESSOR|RADIX|RES|SET|SPACE|SUBTITLE|TITLE|UDATA|UDATA_ACS|UDATA_OVR|UDATA_SHR|VARIABLE|WHILE)\b</string>
+			<key>name</key>
+			<string>constant.character.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>ASM directives 2</string>
+			<key>match</key>
+			<string>(?i)\B(#DEFINE|#INCLUDE|#UNDEFINE)\b</string>
+			<key>name</key>
+			<string>constant.character.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Label</string>
+			<key>match</key>
+			<string>(^ ?(?i)[0-9A-Z\:\_]+)(\b|\B)</string>
+			<key>name</key>
+			<string>variable.parameter.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Comment line</string>
+			<key>match</key>
+			<string>(//|;)(\s|\S)*</string>
+			<key>name</key>
+			<string>comment.line.asm</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(/\*)</string>
+			<key>comment</key>
+			<string>C-style comment block</string>
+			<key>end</key>
+			<string>(\*/)</string>
+			<key>name</key>
+			<string>comment.block.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Single-line string</string>
+			<key>match</key>
+			<string>(^|\s)"[\w\s\W]*"($|\s)</string>
+			<key>name</key>
+			<string>string.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Single-line string</string>
+			<key>match</key>
+			<string>(^|\s)\'[\w\s\W]*\'($|\s)</string>
+			<key>name</key>
+			<string>string.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>HEX number constant 1</string>
+			<key>match</key>
+			<string>(?i)\b(0x(\d|[A-F])+)\b</string>
+			<key>name</key>
+			<string>constant.numeric.hex</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>HEX number constant 2</string>
+			<key>match</key>
+			<string>(?i)\b((\d|[A-F])+h)\b</string>
+			<key>name</key>
+			<string>constant.numeric.hex</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>HEX number constant 3</string>
+			<key>match</key>
+			<string>(?i)\b(H'(\d|[A-F])+')\B</string>
+			<key>name</key>
+			<string>constant.numeric.hex</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>OCT number constant 1</string>
+			<key>match</key>
+			<string>\b(0[0-7]+)\b</string>
+			<key>name</key>
+			<string>constant.numeric.octal</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>OCT number constant 2</string>
+			<key>match</key>
+			<string>(?i)\b(O'[0-7]+')\B</string>
+			<key>name</key>
+			<string>constant.numeric.octal</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>DEC number constant 1</string>
+			<key>match</key>
+			<string>\B(\.\d+)\b</string>
+			<key>name</key>
+			<string>constant.numeric.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>DEC number constant 2</string>
+			<key>match</key>
+			<string>(?i)\b(D'\d+')\B</string>
+			<key>name</key>
+			<string>constant.numeric.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>BIN number constant 1</string>
+			<key>match</key>
+			<string>(?i)\b(0b(0|1)+)\b</string>
+			<key>name</key>
+			<string>constant.numeric.asm</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>BIN number constant 2</string>
+			<key>match</key>
+			<string>(?i)\b(B'[0-1]+')\B</string>
+			<key>name</key>
+			<string>constant.numeric.asm</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.asm</string>
+	<key>uuid</key>
+	<string>44960223-36a6-4f65-8d03-046c07dc55da</string>
+</dict>
+</plist>
